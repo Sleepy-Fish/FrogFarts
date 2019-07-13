@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import { MenuState, GameState, OptionsState } from './states';
+import { MenuState, GameState, OptionsState, LoadState } from './states';
 import C from './constants.json';
 
 const app = new PIXI.Application({
@@ -12,7 +12,8 @@ let CurrentState = null;
 const states = {
   menu: new MenuState(app),
   game: new GameState(app),
-  options: new OptionsState(app)
+  options: new OptionsState(app),
+  load: new LoadState(app)
 };
 
 window.changeState = function(state) {
@@ -23,6 +24,7 @@ window.changeState = function(state) {
   CurrentState = states[state];
   resize();
 };
+
 window.changeState('menu');
 
 function resize() {
@@ -33,10 +35,11 @@ function resize() {
   CurrentState.resize(rendererWidth, window.innerHeight);
 }
 window.addEventListener('resize', resize);
-resize();
-
-function loop(delta) {
-  CurrentState.run(delta);
-}
-
-app.ticker.add(delta => loop(delta));
+window.changeState('load');
+states.load.loadAssets().then(() => {
+  window.changeState('menu');
+  function loop(delta) {
+    CurrentState.run(delta);
+  }
+  app.ticker.add(delta => loop(delta));
+});

@@ -25,11 +25,9 @@ export default class State {
   }
 
   run(delta) {
-    this.fpsText.text = `FPS: ${Math.round(this.app.ticker.FPS)}`;
   }
 
   resize(width, height) {
-    console.log(this.backButton.width);
     this.backButton.x = width - (this.backButton.width / 2);
     this.backButton.y = 0 + (this.backButton.height / 2);
   }
