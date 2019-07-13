@@ -1,0 +1,54 @@
+{
+    "frames": {
+        "Fly0.png": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        },
+        "Fly1.png": {
+            "frame": {
+                "x": 32,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        }
+    },
+    "meta": {
+        "app": "https://github.com/piskelapp/piskel/",
+        "version": "1.0",
+        "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAADEUlEQVRoQ7VZPY7VMBB2liaipkJLS8dNkEBot+AMjwNwBA4AZ9gChEDam9DR7morakTDGtkbm/FkxvONk6R57yW2v28+z5/zpuC7YowxhNvLMD37MtGp8eYihvPPYZry7eaZD6I7end8L9GY6MWbizB9uG6YxvcvkyjlnnddVKPd8XGipzkmI8v16N11uD9/+HV2G8Lfj/+fZXE+/cHXRsw/CB8jeZqz8snQr7/fZrpvHl81Akj3dxPhQHxbgAW8bFISIV1l9637W0U4ezVHiuXBT2Pvv/c90RSAE0C8lYpiEeittwUb5TAkwLefD2Hw+vlV/uS/UXBITOaBGpZ23/JAU4BQCKSktnwvYNyAIkgGpfMgS4FBpzlS7B+/7vKkF0+e1smZgyMB2wJwXkQESqAxHrBleIiyCaP4fgFSNWCJqVSILfHuEWRPfJ8AJB5LNi7Em6rgcEGP4TWslpJM547i4wIIuWBF/qjYT0AH4UMCVJcrO8sycxWCPEdqMLr7R+LbAkjZnHRmTQhQ19+rCij4NASr+w/g9wXQjDjNMe/wchZQk+BWEZT5UneYufDcA+DrAlA3l5TV/Fcb60mMPMT2wE98BQ5rAYh7J1XrTlvxXwTheYCuoZBotCTe1XjZAH71TMmOBbQVgMX2ngIkPDFWhUarGN4cfAYEoPNXG9kTYNXKslgyGxGpZCElUvC+KhxxXxN/KZuiAMwL7RzAiVv1uDfeqnvC2qswkEqwgqnOJWLaZZCStrKq9dwSQMPSPGrLeDEELIKWgdZza33keac05+meauN6e1uys/GGZdW1IUahYwwOI9h4CKC7i45DjT44BDEBtKZIMsIz1iMCsu6A+D4B0PgaIGJqga6JjnMlQeeiR70Og5Kck6vtAb2+3AqBgawsegLKAR1HQMzTIG1LxROX0cpCc3r+T4wSzwZlLusi65JG2MoC9M4EvV3ttbIj3gC2xtnYpUSmr80ZxsDtngbLYulz9Y+Mcvbm48x52u4Lm1B4rA5Vwu6juKoAtaPiSQXtxNB5hgAij97aTtx/cOSnP683vrsAAAAASUVORK5CYII=",
+        "format": "RGBA8888",
+        "size": {
+            "w": 64,
+            "h": 32
+        }
+    }
+}
