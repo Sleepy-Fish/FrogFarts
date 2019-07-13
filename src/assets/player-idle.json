@@ -1,0 +1,94 @@
+{
+    "frames": {
+        "Idle0.png": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        },
+        "Idle1.png": {
+            "frame": {
+                "x": 32,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        },
+        "Idle2.png": {
+            "frame": {
+                "x": 64,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        },
+        "Idle3.png": {
+            "frame": {
+                "x": 96,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        }
+    },
+    "meta": {
+        "app": "https://github.com/piskelapp/piskel/",
+        "version": "1.0",
+        "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAAEBUlEQVR4Xu1bPXIWMQz1huY7ABUTWjpukhkoQsEZkgNwBA5AzkABBczkJnS0yVBxgDTJMt61F9mWrJ/1xpPNlyrsj6Wn92RLWjK448+zjsDwrNEfwTutAMZxHJ27/eCG19+Td8eb89GdfnPDMF3WrvtUqNgdfi1Ro2dqvDl3Ly6v3cPpzNvJrXP3X868KCKR2nWlAuhNwO7wy4i6OMzAP50tRGECWNj/fD3/enUnW19Kv3N9CNgxfp6gAD5y5LPd/8Ts5643EUFPAnaOnxXAybvDmJMtTVgvloefK3eBzgTsHb9ZABO5oAbARNJCAL0JoOzvBT8rAJdloM/+H78/opvA+zdfy+sr64DeBOwdPy8ASCkQgxfBr79/prtvX75yCfkrSU9U1FmAlC97wa8TQIgGlpUttnu2tughQMSpPeHXCyCQELuBGJ+lBmiZ/YQiuhHg/dkZfp0AkO0Y5WhrEVwcRlKA28wfZpi98QP7KH5D3OUCiMa9ESoQ8J7BGfYI0JAQF2vlRy/8UtEZ8YoEsGy5MZjZNlhs/yFDV88AckVISciFslIE3fBD8rPYF8liTD5eADDo0WokOJ8DwEBj74lSvPIQIoBiMon5kB8LGt8eAz9hY4kEggnFrcEVFv8vgJoTVFAxrjgRGJxMjhyQCegwJs/22hZq8ZXbkluvieCp4sZ2jUpOlQKQkkotKhULti1LM0FDQnYcwOAl3ym0QmmJHxypyURVI2a4y1EiQOK7CMCfc0VLh1XUK4O/2MC+EWxBAiIAfymvT3rjj/abCIArloGwkhoAHbsimarqwzNSawOjrUlYsp8oCnvj90cduUNxpDLJCttGKH70COACtTgasriokpHqPQGGORvekZJQ7cmJc3PK/FC4Fp+psx57eo7qHrIupwl+rLPSHAG1IzXGFvk6WwigWlVDFVLOEdfZdamzWlorgA5l+pUqxqgilGtta+sL4sLix1pcrqDkfAp+1ZKPbgOlXQHMdss7yPum1k4qgEpFnNyyYLG8g/mjXYcp+mrx5OcAHMGa+9LgU2RKWxxLqynxjVuXuy+xIRUEcswul/KhUWUQJheAcLrHnofWIOTbWW26twURPfFL8MACUjH5VAmgOFutarWKQBIIjVA0fihsi+Ikta0hVuojsC0TgHTrhcVQXohJAVPPaXyoFWUWPzS2Nc9KfNGQarCtE4B0a9E4LQmCVliGQFTd0OLRPl8zrsGieTbYbC8AgxMiDWiCqnlWYlyz3hb4LfaFyaoTgGRb3zIAR/v8H9so418KAKgNTuWS6WCuSPhv7FOxnxhKVXy0P3+TubobHiP+pADy4UEyS87HqYE07Bl2Akb0s0f7c2Dg317EUGH/Acffs8T/H697lV0lG961AAAAAElFTkSuQmCC",
+        "format": "RGBA8888",
+        "size": {
+            "w": 128,
+            "h": 32
+        }
+    }
+}
