@@ -16,5 +16,6 @@ module.exports = {
   },
   rules: {
     "semi": [1, "always"],
+    "space-before-function-paren": [1, "never"],
   }
 };
