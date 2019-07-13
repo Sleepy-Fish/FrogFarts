@@ -34,20 +34,6 @@ export default class LoadState extends State {
         .add('playerSquat', './assets/player-squat.json', true)
         .load((loader, resources) => {
           resolve(resources);
-          const result = [];
-          for (const frame in resources.playerCharge.spritesheet.textures) {
-            result.push({
-              texture: resources.playerCharge.spritesheet.textures[frame],
-              time: C.ANIMATION_TIME
-            });
-          }
-          const animation = new PIXI.AnimatedSprite(result);
-          this.scene.addChild(animation);
-          animation.loop = true;
-          animation.play();
-          animation.scale.x = 5;
-          animation.scale.y = 5;
-          animation.x = 200;
         });
     });
   }

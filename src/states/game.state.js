@@ -20,5 +20,10 @@ export default class GameState extends State {
 
   activate() {
     super.activate();
+    this.player.generateAnimations();
+    this.player.startAnimation('playerIdle');
+    this.scene.addChild(this.player.sprite);
+    this.player.sprite.x = 200;
+    this.player.sprite.y = 200;
   }
 }

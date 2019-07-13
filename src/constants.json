@@ -1,4 +1,22 @@
 {
-    "MAX_WIDTH": 900,
-    "ANIMATION_TIME": 300
+  "MAX_WIDTH": 900,
+  "ANIMATION_TIME": 300,
+  "ANIMATIONS": [
+    {
+      "name": "playerCharge",
+      "location": "./assets/player-charge.json"
+    },
+    {
+      "name": "playerFly",
+      "location": "./assets/player-fly.json"
+    },
+    {
+      "name": "playerIdle",
+      "location": "./assets/player-idle.json"
+    },
+    {
+      "name": "playerSquat",
+      "location": "./assets/player-squat.json"
+    }
+  ]
 }
