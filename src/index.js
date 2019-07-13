@@ -1,35 +1,44 @@
 import * as PIXI from 'pixi.js';
-import Player from './Player.js';
+import MenuState from './states/menu.state';
+import GameState from './states/game.state';
+import Player from './Player';
+import C from './constants.json';
+
 const app = new PIXI.Application({
   autoResize: true,
   resolution: devicePixelRatio
 });
 document.body.appendChild(app.view);
 
-// Lets create a red square, this isn't
-// necessary only to show something that can be position
-// to the bottom-right corner
-const rect = new PIXI.Graphics()
-  .beginFill(0xff0000)
-  .drawRect(-100, -100, 100, 100);
+let CurrentState = null;
+const states = {
+  menu: new MenuState(app),
+  game: new GameState(app)
+};
 
-// Add it to the stage
-app.stage.addChild(rect);
+window.changeState = function(state) {
+  for (const key in states) {
+    states[key].deactivate();
+  }
+  states[state].activate();
+  CurrentState = states[state];
+};
+window.changeState('game');
 
-// Listen for window resize events
-window.addEventListener('resize', resize);
-
-// Resize function window
 function resize() {
-  // Resize the renderer
-  app.renderer.resize(window.innerWidth, window.innerHeight);
-
-  // You can use the 'screen' property as the renderer visible
-  // area, this is more useful than view.width/height because
-  // it handles resolution
-  rect.position.set(app.screen.width, app.screen.height);
+  const rendererWidth = Math.min(window.innerWidth, C.MAX_WIDTH);
+  app.renderer.resize(rendererWidth, window.innerHeight);
+  app.renderer.view.style.position = 'absolute';
+  app.renderer.view.style.left = (window.innerWidth / 2) - (rendererWidth / 2) + 'px';
 }
-
+window.addEventListener('resize', resize);
 resize();
+
 const player = new Player(app);
 player.loadSpriteSheet();
+
+function loop(delta) {
+  CurrentState.run(delta);
+}
+
+app.ticker.add(delta => loop(delta));
