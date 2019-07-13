@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import Player from './Player.js';
 const app = new PIXI.Application({
   autoResize: true,
   resolution: devicePixelRatio
@@ -30,3 +31,5 @@ function resize() {
 }
 
 resize();
+const player = new Player(app);
+player.loadSpriteSheet();
