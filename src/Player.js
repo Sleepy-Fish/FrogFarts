@@ -30,8 +30,17 @@ export default class Player {
       .add('playerCharge', './assets/player-charge.json')
       .load((loader, resources) => {
         console.log(resources);
-        // const animation = new PIXI.AnimatedSprite(resources.playerCharge.spritesheet);
-        // console.log(animation);
+        const result = Object.keys(resources.playerCharge.spritesheet.textures).map(function(key) {
+          return resources.playerCharge.spritesheet.textures[key];
+        });
+        console.log(result);
+        const animation = new PIXI.AnimatedSprite(result);
+        console.log(animation);
+        this.app.stage.addChild(animation);
+        animation.loop = true;
+        animation.play();
+        animation.scale.x = 5;
+        animation.scale.y = 5;
       });
   }
 }
