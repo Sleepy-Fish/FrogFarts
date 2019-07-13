@@ -1,0 +1,94 @@
+{
+    "frames": {
+        "Charge0.png": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        },
+        "Charge1.png": {
+            "frame": {
+                "x": 32,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        },
+        "Charge2.png": {
+            "frame": {
+                "x": 64,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        },
+        "Charge3.png": {
+            "frame": {
+                "x": 96,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "rotated": false,
+            "trimmed": false,
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0,
+                "w": 32,
+                "h": 32
+            },
+            "sourceSize": {
+                "w": 32,
+                "h": 32
+            }
+        }
+    },
+    "meta": {
+        "app": "https://github.com/piskelapp/piskel/",
+        "version": "1.0",
+        "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAYAAADaInAlAAADF0lEQVR4Xu1aO1IjMRAdQ+IDEG1BSsZNqGKDTTiDOQ6cgYQAqrjJZpvuFhEHcAKmNB6NW61udfdYdu2gJoJBo6d+/fone9H5T9MMLJq23o3vXACNi8AF4AJonIHGzfcM4AJonIHGzfcM4AJonIHGzfcM4ALQM3Bys9zE1Z8v60Q8pf/pEcorHb8+/6YMAB0QXPV5vnXYyb/UcVgchxBAi/hd1/UBuPn7qzu9e034/7i/7hYXT5FqtV91C1eD8h7WPYB4gNVye5CHNEtMFoLj947PAo0LwOG5hn9ZAJH8wXvxEDH6o1O555pDFIXh+GPZhSKoxX8qAEj2EL0h7WMwbSQHUYzlgNhbs081fA1Yg/ZnjdzobEEAvXNBCqJEQgkgeYadYnDAVPxSaUrE1oj9OwGgVDsSRT0fHPf857b/7eflIx9fgUhub/QW5QDyXSt+WC9loEbtzwQAIyuLFkBScP7v97d+ydXZj1QEsPkD7yR74wZRI5Ip+Mj54xkY/Nbs50vA0HXiktA3IkRfkKX2wVmYULYEMOupJlKFH7MLl8GICQXvywlWhT8T++kmkIlgmLG5kSSrBdRezHjIEhvHGrC5Fp/tFagz7MbNcmksjGRzs18eA6VI4qr/lDsAgwM0TT3VxxSb0NKmhV6IfG0m9usFAK00pFW1oywLp+JTArPgSsEwxenHxCfslwVQiMrs8seQ7lV2cw4D9TXsQ/Up/f41HP7N7dcLIBAaHbxaboq1VRq5VN4vjG4Svmbs2+cMEv6M7LcJQEsaXLdPWrTW3Zr9iJTutVz85/arBSDdvJm6bS15pVEKTQbkuGn4UIQ9EnGG7K4AjczF+w6t7SCLFW0b9ptqvywAXEslQuDN3z7qxxEIyk/4lyi4GvWfOsM3s98uAFxfqXRfk3yqmZOmAMfffoKoCMBpApDS2KEd4PhlBgz82wSgUVWtDhiaaNnTslYSEtUISlE1M/xcAEA98Go2+RAFKwz+TY1I4fuDWlU6/pi+j8E/KwB8yQPv3rOLF3QxEwIHf1+QvazBUchc8jj+jqia/H8BvrLDTpUu57oAAAAASUVORK5CYII=",
+        "format": "RGBA8888",
+        "size": {
+            "w": 128,
+            "h": 32
+        }
+    }
+}
