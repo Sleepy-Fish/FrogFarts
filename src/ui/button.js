@@ -10,9 +10,9 @@ export default class Button {
     this.container.x = options.x || 0;
     this.container.y = options.y || 0;
 
-    this.plain = options.plainTexture || PIXI.Texture.fromImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUmPj/PwAFGgKplHdb/wAAAABJRU5ErkJggg==', true);
-    this.hover = options.hoverTexture || PIXI.Texture.fromImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNs3/fxPwAHQQM3YEwWdQAAAABJRU5ErkJggg==', true);
-    this.click = options.clickTexture || PIXI.Texture.fromImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUS137HwAD6gIpM6FI4wAAAABJRU5ErkJggg==', true);
+    this.plain = options.plainTexture || PIXI.Texture.from('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUmPj/PwAFGgKplHdb/wAAAABJRU5ErkJggg==');
+    this.hover = options.hoverTexture || PIXI.Texture.from('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNs3/fxPwAHQQM3YEwWdQAAAABJRU5ErkJggg==');
+    this.click = options.clickTexture || PIXI.Texture.from('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mMUS137HwAD6gIpM6FI4wAAAABJRU5ErkJggg==');
 
     this.sprite = new PIXI.Sprite(this.plain);
     this.sprite.buttonMode = true;
@@ -50,12 +50,36 @@ export default class Button {
     return this.container;
   }
 
+  get x() {
+    return this.container.x;
+  }
+
   set x(x) {
     this.container.x = x;
   }
 
+  get y() {
+    return this.container.y;
+  }
+
   set y(y) {
     this.container.y = y;
+  }
+
+  get width() {
+    return this.sprite.width;
+  }
+
+  set width(val) {
+    this.sprite.width = val;
+  }
+
+  get height() {
+    return this.sprite.height;
+  }
+
+  set height(val) {
+    this.sprite.height = val;
   }
 
   reset() {

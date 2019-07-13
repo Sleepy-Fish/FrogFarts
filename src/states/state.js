@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import { Button } from '../ui';
 
 export default class State {
   constructor(app) {
@@ -10,8 +11,17 @@ export default class State {
     this.fpsText.style.fill = 0xff0000;
     this.fpsText.x = 10;
     this.fpsText.y = 10;
+
+    this.backButton = new Button({
+      text: 'Menu',
+      width: 70,
+      height: 30
+    }, () => {
+      window.changeState('menu');
+    });
+
     app.stage.addChild(this.scene);
-    this.scene.addChild(this.fpsText);
+    this.scene.addChild(this.fpsText, this.backButton.init);
   }
 
   run(delta) {
@@ -19,7 +29,9 @@ export default class State {
   }
 
   resize(width, height) {
-
+    console.log(this.backButton.width);
+    this.backButton.x = width - (this.backButton.width / 2);
+    this.backButton.y = 0 + (this.backButton.height / 2);
   }
 
   activate() {
