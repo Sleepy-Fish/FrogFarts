@@ -14,7 +14,7 @@ let CurrentState = null;
 const states = {
   menu: new MenuState(app),
   game: new GameState(app),
-  loader: new LoadState(app)
+  load: new LoadState(app)
 };
 
 window.changeState = function(state) {
@@ -24,8 +24,9 @@ window.changeState = function(state) {
   states[state].activate();
   CurrentState = states[state];
 };
-window.changeState('game');
-states.loader.loadAssets().then(() => {
+window.changeState('load');
+states.load.loadAssets().then(() => {
+  window.changeState('menu');
   function resize() {
     const rendererWidth = Math.min(window.innerWidth, C.MAX_WIDTH);
     app.renderer.resize(rendererWidth, window.innerHeight);
