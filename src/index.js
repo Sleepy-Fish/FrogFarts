@@ -1,7 +1,6 @@
 import * as PIXI from 'pixi.js';
 import MenuState from './states/menu.state';
 import GameState from './states/game.state';
-import Player from './Player';
 import C from './constants.json';
 
 const app = new PIXI.Application({
@@ -33,9 +32,6 @@ function resize() {
 }
 window.addEventListener('resize', resize);
 resize();
-
-const player = new Player(app);
-player.loadSpriteSheet();
 
 function loop(delta) {
   CurrentState.run(delta);

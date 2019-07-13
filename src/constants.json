@@ -1,3 +1,4 @@
 {
-    "MAX_WIDTH": 900
+    "MAX_WIDTH": 900,
+    "ANIMATION_TIME": 300
 }
