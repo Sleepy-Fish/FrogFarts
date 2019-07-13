@@ -15,7 +15,6 @@ export default class State {
   }
 
   run(delta) {
-    this.fpsText.text = `FPS: ${Math.round(this.app.ticker.FPS)}`;
   }
 
   resize(width, height) {
