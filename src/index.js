@@ -34,12 +34,14 @@ function resize() {
   app.renderer.view.style.left = (window.innerWidth / 2) - (rendererWidth / 2) + 'px';
   CurrentState.resize(rendererWidth, window.innerHeight);
 }
+
+function loop(delta) {
+  CurrentState.run(delta);
+}
+
 window.addEventListener('resize', resize);
 window.changeState('load');
 states.load.loadAssets().then(() => {
   window.changeState('menu');
-  function loop(delta) {
-    CurrentState.run(delta);
-  }
   app.ticker.add(delta => loop(delta));
 });
