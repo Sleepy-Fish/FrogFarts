@@ -34,9 +34,7 @@ export default class GameState extends State {
     if (collision === 'bottom') {
       this.player.velocity.y = 0;
       this.player.velocity.x = 0;
-      // TODO: rework anchors so we don't have to do this fuckery
-      this.player.stop(this.player.x, this.floor.y - (this.floor.height / 2) - this.player.sprite.height);
-      this.player.startAnimation('playerIdle', true);
+      this.player.collide(this.floor);
     } else {
       this.player.velocity.y += C.GRAVITY;
     }

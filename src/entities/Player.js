@@ -51,9 +51,16 @@ export default class Player {
     });
   }
 
+  collide(counter) {
+    // TODO: rework anchors so we don't have to do this fuckery
+    this.stop(this.x, counter.y - (counter.height / 2) - this.sprite.height);
+    if (this.charge === 0) this.startAnimation('playerIdle', true);
+  }
+
   run(delta) {
-    if (!this.atRest) this.moveTo(this.x += this.velocity.x, this.y -= this.velocity.y);
     this.controller.run(delta);
+    // TODO: work with anchors to fix this bullshit and simplify edge calculations
+    if (!this.atRest) this.moveTo(this.x += this.velocity.x, this.y -= this.velocity.y);
   }
 
   /**
