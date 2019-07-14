@@ -19,7 +19,7 @@ export default class Player {
       spacebar: 32,
       left: 65,
       right: 68
-    });
+    }, 'spacebar');
     this.controller.activate();
     this.controller.onHold('spacebar', this.chargeJump.bind(this));
     this.controller.onPress('left', () => {

@@ -1,6 +1,7 @@
 export default class Controller {
-  constructor(bindings = {}) {
+  constructor(bindings = {}, mainAction) {
     this.active = true;
+    this.mainAction = mainAction;
     this.bindings = bindings; // { actionName: keyCode }
     this.press = {}; // { actionName: function - callback on key pressed }
     this.release = {}; // { actionName: function - callback on key released }
@@ -8,32 +9,70 @@ export default class Controller {
     this.keysDown = {}; // { keyCode: boolean - is key currently down }
 
     window.addEventListener('keydown', event => {
-      if (!this.activate) return;
-      for (const action in this.bindings) {
-        const keyCode = this.bindings[action];
-        if (keyCode === event.keyCode && !this.keysDown[keyCode]) {
-          this.keysDown[keyCode] = true;
-          if (typeof this.press[action] === 'function') this.press[action]();
-          break;
-        }
-      }
+      this.handleDown(event);
+    }, false);
+
+    window.addEventListener('touchstart', event => {
+      this.handleDown(event);
     }, false);
 
     window.addEventListener('keyup', event => {
-      if (!this.activate) return;
-      for (const action in this.bindings) {
-        const keyCode = this.bindings[action];
-        if (keyCode === event.keyCode && this.keysDown[keyCode]) {
-          this.keysDown[keyCode] = false;
-          if (typeof this.release[action] === 'function') this.release[action]();
-          break;
-        }
-      }
+      this.handleUp(event);
+    }, false);
+
+    window.addEventListener('touchend', event => {
+      this.handleUp(event);
     }, false);
   }
 
+  handleDown(event) {
+    if (!this.active) return;
+    switch (event.constructor.name) {
+      case 'KeyboardEvent':
+        for (const action in this.bindings) {
+          const keyCode = this.bindings[action];
+          if (keyCode === event.keyCode && !this.keysDown[keyCode]) {
+            this.keysDown[keyCode] = true;
+            if (typeof this.press[action] === 'function') this.press[action]();
+            break;
+          }
+        }
+        break;
+      case 'TouchEvent':
+        const keyCode = this.bindings[this.mainAction];
+        if (!this.keysDown[keyCode]) {
+          this.keysDown[keyCode] = true;
+          if (typeof this.press[this.mainAction] === 'function') this.press[this.mainAction]();
+        }
+        break;
+    }
+  }
+
+  handleUp(event) {
+    if (!this.active) return;
+    switch (event.constructor.name) {
+      case 'KeyboardEvent':
+        for (const action in this.bindings) {
+          const keyCode = this.bindings[action];
+          if (keyCode === event.keyCode && this.keysDown[keyCode]) {
+            this.keysDown[keyCode] = false;
+            if (typeof this.release[action] === 'function') this.release[action]();
+            break;
+          }
+        }
+        break;
+      case 'TouchEvent':
+        const keyCode = this.bindings[this.mainAction];
+        if (this.keysDown[keyCode]) {
+          this.keysDown[keyCode] = false;
+          if (typeof this.release[this.mainAction] === 'function') this.release[this.mainAction]();
+        }
+        break;
+    }
+  }
+
   run(delta) {
-    if (!this.activate) return;
+    if (!this.active) return;
     for (const action in this.bindings) {
       const keyCode = this.bindings[action];
       if (this.keysDown[keyCode]) {
@@ -43,11 +82,11 @@ export default class Controller {
   }
 
   activate() {
-    this._active = true;
+    this.active = true;
   }
 
   deactivate() {
-    this._active = false;
+    this.active = false;
   }
 
   onPress(action, callback) {
