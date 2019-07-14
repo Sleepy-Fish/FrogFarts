@@ -87,8 +87,11 @@ export default class Player {
 
   chargeJump() {
     if (this.charge === 0) {
+      this.charging = true;
       this.startAnimation('playerSquat', false).onComplete = () => {
-        this.startAnimation('playerCharge');
+        if (this.charging) {
+          this.startAnimation('playerCharge');
+        }
       };
     }
     this.charge += C.CHARGE_STRENGTH;
@@ -101,6 +104,7 @@ export default class Player {
   }
 
   releaseJump() {
+    this.charging = false;
     this.startAnimation('playerFly');
     console.log('JUMPING!!!', this.charge);
     this.velocity.y = this.charge;
