@@ -108,8 +108,7 @@ export default class Player {
   releaseJump() {
     this.charging = false;
     this.startAnimation('playerFly');
-    console.log('JUMPING!!!', this.charge);
-    this.velocity.y += this.charge;
+    this.velocity.y = this.charge;
     this.moveTo(this.x, this.y - 20);
     this.charge = 0;
     this.atRest = false;
