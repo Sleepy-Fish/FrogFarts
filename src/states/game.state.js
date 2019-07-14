@@ -16,6 +16,7 @@ export default class GameState extends State {
 
   run(delta) {
     super.run(delta);
+    this.player.run(delta);
   }
 
   activate() {
@@ -23,7 +24,6 @@ export default class GameState extends State {
     this.player.generateAnimations();
     this.player.startAnimation('playerIdle');
     this.scene.addChild(this.player.sprite);
-    this.player.sprite.x = 200;
-    this.player.sprite.y = 200;
+    this.player.moveTo(200, 200);
   }
 }
