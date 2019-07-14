@@ -5,6 +5,11 @@ export default class Player {
   constructor(scene) {
     this.scene = scene;
     this.animations = {};
+    this.sprite = new PIXI.Sprite(PIXI.Texture.from('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkzVT8DwACugGYrNcDjQAAAABJRU5ErkJggg=='));
+    this.velocity = {
+      x: 0,
+      y: 0
+    };
   }
 
   generateAnimations() {
@@ -19,6 +24,11 @@ export default class Player {
       }
       this.animations[animationInfo.name] = new PIXI.AnimatedSprite(result);
     });
+  }
+
+  run(delta) {
+    this.sprite.x += this.velocity.x;
+    this.sprite.y -= this.velocity.y;
   }
 
   /**

@@ -18,5 +18,8 @@
       "name": "playerSquat",
       "location": "./assets/player-squat.json"
     }
-  ]
+  ],
+  "GRAVITY": -0.2,
+
+  "TERMINAL_VELOCITY": -18
 }

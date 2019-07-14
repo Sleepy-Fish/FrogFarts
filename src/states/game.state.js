@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import State from './state';
-import Player from '../entities/Player';
+import { Player, Platform } from '../entities';
+import C from '../constants.json';
 
 export default class GameState extends State {
   constructor(app) {
@@ -11,11 +12,33 @@ export default class GameState extends State {
     this.gameText.y = 50;
 
     this.player = new Player(this.scene);
+    this.floor = new Platform(this.scene, {
+      x: window.innerWidth / 2,
+      y: window.innerHeight - 100,
+      width: window.innerWidth,
+      height: 200
+    });
     this.scene.addChild(this.gameText);
+  }
+
+  resize(width, height) {
+    super.resize(width, height);
+    this.floor.width = width;
+    this.floor.x = width / 2;
+    this.floor.y = height - 100;
   }
 
   run(delta) {
     super.run(delta);
+    const collision = window.bump.hit(this.player.sprite, this.floor.sprite, true, false, false);
+    if (collision === 'bottom') {
+      this.player.velocity.y = 0;
+      this.player.velocity.x = 0;
+    } else {
+      this.player.velocity.y += C.GRAVITY;
+    }
+    this.player.velocity.y = Math.max(this.player.velocity.y, C.TERMINAL_VELOCITY);
+    this.player.run(delta);
   }
 
   activate() {

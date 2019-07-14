@@ -1,6 +1,8 @@
 import * as PIXI from 'pixi.js';
 import { MenuState, GameState, OptionsState, LoadState } from './states';
 import C from './constants.json';
+import { Bump } from './vendor';
+window.bump = new Bump(PIXI);
 
 const app = new PIXI.Application({
   autoResize: true,
