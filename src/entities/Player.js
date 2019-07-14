@@ -82,6 +82,8 @@ export default class Player {
     this.sprite.loop = !!loop;
     this.sprite.play();
     this.scene.addChild(this.sprite);
+    this.sprite.scale.x = 2;
+    this.sprite.scale.y = 2;
     return this.sprite;
   }
 

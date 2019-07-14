@@ -4,6 +4,8 @@ import C from './constants.json';
 import { Bump } from './vendor';
 window.bump = new Bump(PIXI);
 
+PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+
 const app = new PIXI.Application({
   autoResize: true,
   resolution: devicePixelRatio
