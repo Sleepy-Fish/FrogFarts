@@ -20,6 +20,7 @@
     }
   ],
   "GRAVITY": -0.2,
-
-  "TERMINAL_VELOCITY": -18
+  "TERMINAL_VELOCITY": -18,
+  "CHARGE_STRENGTH": 0.5,
+  "MAX_CHARGE": 20
 }

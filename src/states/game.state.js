@@ -30,10 +30,13 @@ export default class GameState extends State {
 
   run(delta) {
     super.run(delta);
-    const collision = window.bump.hit(this.player.sprite, this.floor.sprite, true, false, false);
+    const collision = window.bump.hit(this.player.sprite, this.floor.sprite, true, true, true);
     if (collision === 'bottom') {
       this.player.velocity.y = 0;
       this.player.velocity.x = 0;
+      // TODO: rework anchors so we don't have to do this fuckery
+      this.player.stop(this.player.x, this.floor.y - (this.floor.height / 2) - this.player.sprite.height);
+      this.player.startAnimation('playerIdle', true);
     } else {
       this.player.velocity.y += C.GRAVITY;
     }
@@ -46,7 +49,6 @@ export default class GameState extends State {
     this.player.generateAnimations();
     this.player.startAnimation('playerIdle');
     this.scene.addChild(this.player.sprite);
-    this.player.sprite.x = 200;
-    this.player.sprite.y = 200;
+    this.player.moveTo(200, 200);
   }
 }
