@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import State from './state';
-import { Player, Platform } from '../entities';
+import { Player, Platform, Enemy } from '../entities';
 import C from '../constants.json';
 
 export default class GameState extends State {
@@ -12,6 +12,7 @@ export default class GameState extends State {
     this.gameText.y = 50;
 
     this.player = new Player(this.scene);
+    this.enemy = new Enemy(this.scene);
     this.floor = new Platform(this.scene, {
       x: window.innerWidth / 2,
       y: window.innerHeight - 100,
@@ -47,6 +48,10 @@ export default class GameState extends State {
     this.player.generateAnimations();
     this.player.startAnimation('playerIdle');
     this.scene.addChild(this.player.sprite);
+    this.enemy.generateAnimations();
+    this.enemy.startAnimation('enemyIdle');
+    this.scene.addChild(this.enemy.sprite);
+    this.enemy.moveTo(300, 300);
     this.player.moveTo(200, 200);
   }
 }

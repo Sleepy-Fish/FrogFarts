@@ -32,6 +32,7 @@ export default class LoadState extends State {
         .add('playerFly', './assets/player-fly.json', true)
         .add('playerIdle', './assets/player-idle.json', true)
         .add('playerSquat', './assets/player-squat.json', true)
+        .add('enemyIdle', './assets/enemy-idle.json', true)
         .load((loader, resources) => {
           resolve(resources);
         });
