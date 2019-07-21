@@ -1,24 +1,32 @@
 {
   "MAX_WIDTH": 900,
   "ANIMATION_TIME": 300,
-  "ANIMATIONS": [
-    {
-      "name": "playerCharge",
-      "location": "./assets/player-charge.json"
-    },
-    {
-      "name": "playerFly",
-      "location": "./assets/player-fly.json"
-    },
-    {
-      "name": "playerIdle",
-      "location": "./assets/player-idle.json"
-    },
-    {
-      "name": "playerSquat",
-      "location": "./assets/player-squat.json"
-    }
-  ],
+  "ANIMATIONS": {
+    "PLAYER": [
+      {
+        "name": "playerCharge",
+        "location": "./assets/player-charge.json"
+      },
+      {
+        "name": "playerFly",
+        "location": "./assets/player-fly.json"
+      },
+      {
+        "name": "playerIdle",
+        "location": "./assets/player-idle.json"
+      },
+      {
+        "name": "playerSquat",
+        "location": "./assets/player-squat.json"
+      }
+    ],
+    "ENEMY": [
+      {
+        "name": "enemyIdle",
+        "location": "./assets/enemy-idle.json"
+      }
+    ]
+  },
   "GRAVITY": -0.2,
   "TERMINAL_VELOCITY": -18,
   "CHARGE_STRENGTH": 0.5,
