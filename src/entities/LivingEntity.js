@@ -1,8 +1,10 @@
 import C from '../constants.json';
 import * as PIXI from 'pixi.js';
+import Entity from './Entity.js';
 
-export default class LivingEntity {
+export default class LivingEntity extends Entity {
   constructor(scene) {
+    super(scene);
     this.scene = scene;
     this.animations = {};
     this.atRest = true;
@@ -15,28 +17,33 @@ export default class LivingEntity {
     this.NAME = null;
   }
 
-  generateAnimations() {
-    const resources = PIXI.Loader.shared.resources;
-    C.ANIMATIONS[this.NAME].forEach((animationInfo) => {
-      const result = [];
-      for (const frame in resources[animationInfo.name].spritesheet.textures) {
-        result.push({
-          texture: resources[animationInfo.name].spritesheet.textures[frame],
-          time: C.ANIMATION_TIME
-        });
-      }
-      this.animations[animationInfo.name] = new PIXI.AnimatedSprite(result);
-    });
-  }
-
-  collide(counter) {
-    // TODO: rework anchors so we don't have to do this fuckery
-    this.stop(this.x, counter.y - (counter.height / 2) - this.sprite.height);
-  }
-
   run(delta) {
-    // TODO: work with anchors to fix this bullshit and simplify edge calculations
+    super.run(delta);
     if (!this.atRest) this.moveTo(this.x += this.velocity.x, this.y -= this.velocity.y);
+  }
+
+  generateAnimations() {
+    if (this.NAME && C.ANIMATIONS[this.NAME]) {
+      const resources = PIXI.Loader.shared.resources;
+      let defaultSprite = new PIXI.Sprite(PIXI.Texture.from('data:images/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8L/m/HgAGzgKY9/gjYwAAAABJRU5ErkJggg=='));
+      C.ANIMATIONS[this.NAME].forEach((animationInfo) => {
+        const result = [];
+        for (const frame in resources[animationInfo.name].spritesheet.textures) {
+          result.push({
+            texture: resources[animationInfo.name].spritesheet.textures[frame],
+            time: C.ANIMATION_TIME
+          });
+        }
+        this.animations[animationInfo.name] = new PIXI.AnimatedSprite(result);
+        if (animationInfo.default) defaultSprite = this.animations[animationInfo.name];
+      });
+      this.sprite = defaultSprite;
+      this.sprite.anchor.set(0.5);
+      this.sprite.scale.x = this.sprite.scale.y = C.SCALE;
+      this.scene.addChild(this.sprite);
+    } else {
+      throw Error(`LivingEntity ${this.NAME} has no valid animations`);
+    }
   }
 
   /**
@@ -54,47 +61,27 @@ export default class LivingEntity {
    */
   startAnimation(animationName, loop = true) {
     if (!this.animations[animationName]) {
-      throw new Error(`Animation with name ${animationName} does not exist on this ${this.NAME}.`);
+      throw new Error(`Animation with name ${animationName} does not exist on entity ${this.NAME}.`);
     }
-    if (this.sprite) {
-      this.scene.removeChild(this.sprite);
-    }
+    if (this.sprite) this.scene.removeChild(this.sprite);
     this.sprite = this.animations[animationName];
-    this.sprite.x = this.x;
-    this.sprite.y = this.y;
+    this.sprite.anchor.set(0.5);
+    this.sprite.x = this._x;
+    this.sprite.y = this._y;
+    this.sprite.scale.x = this.sprite.scale.y = C.SCALE;
     this.sprite.loop = !!loop;
     this.sprite.play();
     this.scene.addChild(this.sprite);
-    this.sprite.scale.x = 2;
-    this.sprite.scale.y = 2;
     return this.sprite;
   }
 
-  stop(x, y) {
-    this.atRest = true;
-    this.moveTo(x, y);
-  }
-
-  releaseJump() {
-    this.charging = false;
-    this.startAnimation('playerFly');
-    this.velocity.y = this.charge;
-    this.moveTo(this.x, this.y - 20);
-    this.charge = 0;
-    this.atRest = false;
-  }
-
   /**
-   * Moves the player sprite to the given coordinates.
+   * Stops velocity movement of the entity and sticks it at the given coordinates.
    * @param {number} x - x coordinate.
    * @param {number} y - y coordinate.
    */
-  moveTo(x, y) {
-    if (!x || !y) throw new Error('Must include x and y coordinates!');
-    if (!this.sprite) throw new Error(`Can't move a sprite that doesn't exist!`);
-    this.x = x;
-    this.y = y;
-    this.sprite.x = x;
-    this.sprite.y = y;
+  stop(x = this.x, y = this.y) {
+    this.atRest = true;
+    this.moveTo(x, y);
   }
 }

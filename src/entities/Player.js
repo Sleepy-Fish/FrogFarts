@@ -30,11 +30,12 @@ export default class Player extends LivingEntity {
       if (this.velocity > 0) this.velocity.x = 0;
     });
     this.controller.onRelease('spacebar', this.releaseJump.bind(this));
-  }
 
-  collide(counter) {
-    super.collide(counter);
-    if (this.charge === 0) this.startAnimation('playerIdle', true);
+    this.collisions['FLOOR'] = (self, other, side) => {
+      self.stop();
+      console.log(self.charge);
+      if (self.charge === 0) self.startAnimation('playerIdle', true);
+    };
   }
 
   run(delta) {

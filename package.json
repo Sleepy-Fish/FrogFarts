@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open",
     "develop": "webpack-dev-server",
     "build": "NODE_ENV=production webpack --mode=production"
   },
@@ -18,7 +19,7 @@
     "pixi",
     "game"
   ],
-  "author": "Caleb Rogers and Riley Harrington",
+  "author": "Caleb Rogers and J Riley Harrington",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Sleepy-Fish/GameJam/issues"
