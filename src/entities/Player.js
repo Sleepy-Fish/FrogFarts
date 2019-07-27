@@ -4,9 +4,11 @@ import { Controller } from '../input';
 import LivingEntity from './LivingEntity.js';
 
 export default class Player extends LivingEntity {
-  constructor(scene) {
-    super(scene);
+  constructor(scene, options = {}) {
+    super(scene, options);
     this.NAME = 'PLAYER';
+    this.physical = true;
+    this.interactive = true;
     this.sprite = new PIXI.Sprite(PIXI.Texture.from('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkzVT8DwACugGYrNcDjQAAAABJRU5ErkJggg=='));
     this.atRest = false;
     this.charge = 0;
@@ -31,10 +33,11 @@ export default class Player extends LivingEntity {
     });
     this.controller.onRelease('spacebar', this.releaseJump.bind(this));
 
-    this.collisions['FLOOR'] = (self, other, side) => {
-      self.stop();
-      console.log(self.charge);
-      if (self.charge === 0) self.startAnimation('playerIdle', true);
+    this.collisions['PLATFORM'] = (self, other, edge) => {
+      if (edge === 'bottom') {
+        self.stop(self.x, other.top - self.height / 2);
+        if (self.charge === 0) self.startAnimation('playerIdle', true);
+      }
     };
   }
 

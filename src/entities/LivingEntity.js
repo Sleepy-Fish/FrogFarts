@@ -3,18 +3,10 @@ import * as PIXI from 'pixi.js';
 import Entity from './Entity.js';
 
 export default class LivingEntity extends Entity {
-  constructor(scene) {
-    super(scene);
-    this.scene = scene;
-    this.animations = {};
-    this.atRest = true;
-    this.velocity = {
-      x: 0,
-      y: 0
-    };
-    this.x = 0;
-    this.y = 0;
-    this.NAME = null;
+  constructor(scene, options = {}) {
+    super(scene, options);
+    this.velocity = { x: 0, y: 0 };
+    this.animations = null;
   }
 
   run(delta) {
@@ -22,8 +14,11 @@ export default class LivingEntity extends Entity {
     if (!this.atRest) this.moveTo(this.x += this.velocity.x, this.y -= this.velocity.y);
   }
 
-  generateAnimations() {
-    if (this.NAME && C.ANIMATIONS[this.NAME]) {
+  activate() {
+    super.activate();
+    if (!this.animations) {
+      if (!this.NAME || !C.ANIMATIONS[this.NAME]) throw Error(`LivingEntity ${this.NAME} has no valid animations`);
+      this.animations = {};
       const resources = PIXI.Loader.shared.resources;
       let defaultSprite = new PIXI.Sprite(PIXI.Texture.from('data:images/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8L/m/HgAGzgKY9/gjYwAAAABJRU5ErkJggg=='));
       C.ANIMATIONS[this.NAME].forEach((animationInfo) => {
@@ -35,15 +30,14 @@ export default class LivingEntity extends Entity {
           });
         }
         this.animations[animationInfo.name] = new PIXI.AnimatedSprite(result);
-        if (animationInfo.default) defaultSprite = this.animations[animationInfo.name];
+        if (animationInfo.default) defaultSprite = this.startAnimation(animationInfo.name);
       });
       this.sprite = defaultSprite;
-      this.sprite.anchor.set(0.5);
-      this.sprite.scale.x = this.sprite.scale.y = C.SCALE;
-      this.scene.addChild(this.sprite);
-    } else {
-      throw Error(`LivingEntity ${this.NAME} has no valid animations`);
     }
+  }
+
+  deactivate() {
+    super.deactivate();
   }
 
   /**
@@ -82,6 +76,7 @@ export default class LivingEntity extends Entity {
    */
   stop(x = this.x, y = this.y) {
     this.atRest = true;
+    this.velocity = { x: 0, y: 0 };
     this.moveTo(x, y);
   }
 }

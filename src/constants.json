@@ -5,6 +5,7 @@
   "ANIMATIONS": {
     "PLAYER": [
       {
+        "default": true,
         "name": "playerIdle",
         "location": "./assets/player-idle.json"
       },
@@ -23,6 +24,7 @@
     ],
     "ENEMY": [
       {
+        "default": true,
         "name": "enemyIdle",
         "location": "./assets/enemy-idle.json"
       }

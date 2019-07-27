@@ -1,20 +1,32 @@
 export default class Entity {
-  constructor(scene) {
+  constructor(scene, options = {}) {
     this.scene = scene;
     this.collisions = {};
-    this._x = 0;
-    this._y = 0;
-    this._width = 0;
-    this._height = 0;
+    this._x = options.x || 0;
+    this._y = options.y || 0;
+    this._width = options.width || 0;
+    this._height = options.height || 0;
     this.NAME = null;
+    this.atRest = true;
+    this.physical = false;
+    this.interactive = false;
+    this.solid = false;
   }
 
   run(delta) {
     // Do nothing
   }
 
-  collide(other) {
-    if (other.NAME && typeof this.collisions[other.NAME] === 'function') this.collisions[other.NAME](this, other);
+  collide(other, edge) {
+    if (other.NAME && typeof this.collisions[other.NAME] === 'function') this.collisions[other.NAME](this, other, edge);
+  }
+
+  activate() {
+    // Do nothing
+  }
+
+  deactivate() {
+    // Do nothing
   }
 
   get x() {
