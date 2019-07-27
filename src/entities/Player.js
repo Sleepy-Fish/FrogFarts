@@ -33,14 +33,30 @@ export default class Player extends Entity {
     this.controller.onRelease('spacebar', this.releaseJump.bind(this));
 
     this.collisions['PLATFORM'] = (self, other, edge) => {
-      if (edge === 'bottom') {
-        self.stop(self.x, other.top - self.height / 2);
-        if (self.charge === 0) self.animation.setState('playerIdle', true);
+      switch (edge) {
+        case 'bottom':
+          self.stop(self.x, other.top - self.height / 2);
+          if (self.charge === 0) self.animation.setState('playerIdle', true);
+          break;
       }
     };
     this.collisions['ENEMY'] = (self, other, edge) => {
-      if (edge === 'bottom') {
-        self.velocity.y = 5;
+      switch (edge) {
+        case 'bottom':
+          self.velocity.y = 5;
+          // damage the enemy (other)
+          break;
+
+        case 'top':
+          self.velocity.y = 0;
+          // damage player (self)
+          break;
+
+        case 'left':
+        case 'right':
+          self.velocity.x = -self.velocity.x;
+          // damage player (self)
+          break;
       }
     };
   }
