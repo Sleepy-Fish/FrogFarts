@@ -12,14 +12,6 @@ const app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-let CurrentState = null;
-const states = {
-  menu: new MenuState(app),
-  game: new GameState(app),
-  options: new OptionsState(app),
-  load: new LoadState(app)
-};
-
 window.changeState = function(state) {
   for (const key in states) {
     states[key].deactivate();
@@ -29,8 +21,6 @@ window.changeState = function(state) {
   resize();
 };
 
-window.changeState('menu');
-
 function resize() {
   const rendererWidth = Math.min(window.innerWidth, C.MAX_WIDTH);
   app.renderer.resize(rendererWidth, window.innerHeight);
@@ -38,14 +28,25 @@ function resize() {
   app.renderer.view.style.left = (window.innerWidth / 2) - (rendererWidth / 2) + 'px';
   CurrentState.resize(rendererWidth, window.innerHeight);
 }
+window.addEventListener('resize', resize);
+
+let CurrentState = null;
+const states = {
+  load: new LoadState(app)
+};
+window.changeState('load');
 
 function loop(delta) {
   CurrentState.run(delta);
 }
 
-window.addEventListener('resize', resize);
-window.changeState('load');
 states.load.loadAssets().then(() => {
+  // load menu state
+  states.menu = new MenuState(app);
   window.changeState('menu');
+  // start game loop
   app.ticker.add(delta => loop(delta));
+  // load rest of states
+  states.game = new GameState(app);
+  states.options = new OptionsState(app);
 });

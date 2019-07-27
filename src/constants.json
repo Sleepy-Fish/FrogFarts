@@ -2,6 +2,7 @@
   "SCALE": 2,
   "MAX_WIDTH": 900,
   "ANIMATION_TIME": 300,
+  "COLLISION_LOCK": 200,
   "ANIMATIONS": {
     "PLAYER": [
       {

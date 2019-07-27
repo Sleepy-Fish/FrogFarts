@@ -1,4 +1,6 @@
 /* https://github.com/kittykatattack/bump */
+
+/* I hi-jacked rectangle collisionmlogic because we run most of our own collision logic */
 export default class Bump {
   constructor(renderingEngine = PIXI) {
     if (renderingEngine === undefined) throw new Error("Please assign a rendering engine in the constructor before using bump.js"); 
@@ -575,27 +577,13 @@ export default class Bump {
           if (vy > 0) {
             collision = "top";
             //Move the rectangle out of the collision
-            r1.y = r1.y + overlapY;
+            if (bounce) r1.y = r1.y + overlapY;
           } else {
             collision = "bottom";
             //Move the rectangle out of the collision
-            r1.y = r1.y - overlapY;
+            if (bounce) r1.y = r1.y - overlapY;
           }
 
-          //Bounce
-          if (bounce) {
-            r1.vy *= -1;
-
-            /*Alternative
-            //Find the bounce surface's vx and vy properties
-            var s = {};
-            s.vx = r2.x - r2.x + r2.width;
-            s.vy = 0;
-            //Bounce r1 off the surface
-            //this.bounceOffSurface(r1, s);
-            */
-
-          }
         } else {
           //The collision is happening on the Y axis
           //But on which side? vx can tell us
@@ -603,27 +591,13 @@ export default class Bump {
           if (vx > 0) {
             collision = "left";
             //Move the rectangle out of the collision
-            r1.x = r1.x + overlapX;
+            if (bounce) r1.x = r1.x + overlapX;
           } else {
             collision = "right";
             //Move the rectangle out of the collision
-            r1.x = r1.x - overlapX;
+             if (bounce) r1.x = r1.x - overlapX;
           }
 
-          //Bounce
-          if (bounce) {
-            r1.vx *= -1;
-
-            /*Alternative
-            //Find the bounce surface's vx and vy properties
-            var s = {};
-            s.vx = 0;
-            s.vy = r2.y - r2.y + r2.height;
-            //Bounce r1 off the surface
-            this.bounceOffSurface(r1, s);
-            */
-
-          }
         }
       } else {
         //No collision

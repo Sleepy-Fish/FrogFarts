@@ -23,6 +23,12 @@ export default class GameState extends State {
     });
     entities.push(this.player);
     entities.push(this.floor);
+    entities.push(new Platform(this.scene, {
+      x: 200,
+      y: 400,
+      width: 160,
+      height: 10
+    }));
     entities.push(new Enemy(this.scene, {
       x: 500,
       y: 200
@@ -43,11 +49,14 @@ export default class GameState extends State {
     for (const entity of entities) {
       if (entity.interactive) { // Only interactive entities can collide with things
         for (const other of entities.filter(e => e.solid && e !== entity)) { // Only solid entities can be collided with
-          const edge = window.bump.hit(entity.sprite, other.sprite, true); // If entities are in contact returns string 'top', 'bottom' 'left' or 'right'
-          if (edge) entity.collide(other, edge);
+          const edge = window.bump.hit(entity.collider, other.collider, true); // If entities are in contact returns string 'top', 'bottom' 'left' or 'right'
+          if (edge) {
+            if (!entity.cLocks[other.NAME]) entity.collide(other, edge); // Perform stored collisions logic
+            entity.cLock(other.NAME); // Lock the collision with this type of collidee for a short time so we dont get stuck in a loop
+          }
         }
       }
-      if (entity.physical && !entity.atRest) { // only physical entities are effected by global physics
+      if (entity.physical && !entity.static) { // only physical entities are effected by global physics
         entity.velocity.y += C.GRAVITY;
         entity.velocity.y = Math.max(entity.velocity.y, C.TERMINAL_VELOCITY);
       }
