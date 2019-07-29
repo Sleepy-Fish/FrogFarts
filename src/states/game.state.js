@@ -45,6 +45,20 @@ export default class GameState extends State {
 
   run(delta) {
     super.run(delta);
+    // Handle scrolling if player is approaching vertical margin
+    let offset = 0;
+    if (this.player.y <= this.app.margin.y) {
+      offset += this.app.margin.y - this.player.y;
+    } else if (this.player.y >= this.app.height - this.app.margin.y) {
+      offset -= this.app.margin.y - (this.app.height - this.player.y);
+    }
+    // Handle player bounce if approaching horizonal margins (this will change, just temporary fix to falling off screen)
+    if (this.player.x <= this.app.margin.x) {
+      this.player.velocity.x *= -1;
+    } else if (this.player.x >= this.app.width - this.app.margin.x) {
+      this.player.velocity.x *= -1;
+    }
+
     // Loop all entities to handle collisions, gravity, and percolating run functions
     for (const entity of entities) {
       if (entity.interactive) { // Only interactive entities can collide with things
@@ -62,7 +76,9 @@ export default class GameState extends State {
       }
       // all entities get run
       entity.run(delta);
+      entity.y += offset;
     }
+    offset = null;
   }
 
   activate() {
