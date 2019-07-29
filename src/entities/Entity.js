@@ -131,10 +131,6 @@ export default class Entity {
   moveTo(x = this.x, y = this.y) {
     this.x = x;
     this.y = y;
-    if (this.sprite) {
-      this.sprite.x = x;
-      this.sprite.y = y;
-    }
   }
 
   /**

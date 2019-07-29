@@ -21,12 +21,20 @@ window.changeState = function(state) {
   resize();
 };
 
+// TODO: We should PROBABLY not store things on app object but temporarily the only globally accessible object /shrug
+app.margin = { x: 0, y: 0 };
 function resize() {
   const rendererWidth = Math.min(window.innerWidth, C.MAX_WIDTH);
   app.renderer.resize(rendererWidth, window.innerHeight);
   app.renderer.view.style.position = 'absolute';
   app.renderer.view.style.left = (window.innerWidth / 2) - (rendererWidth / 2) + 'px';
   CurrentState.resize(rendererWidth, window.innerHeight);
+  // Set these on easily accessible variable so we don't have to recalculate throughout the code
+  app.width = app.renderer.width / app.renderer.resolution;
+  app.height = app.renderer.height / app.renderer.resolution;
+  // The amount of space on margin of screen for player to move about
+  app.margin.x = app.width * C.HORIZONTAL_MARGIN;
+  app.margin.y = app.height * C.VERTICAL_MARGIN;
 }
 window.addEventListener('resize', resize);
 
