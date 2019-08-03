@@ -1,5 +1,5 @@
 # FrogFarts
-Fart into the skies.
+Fart into the skies
 
 # Developing
 
