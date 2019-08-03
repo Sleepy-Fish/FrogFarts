@@ -1,5 +1,5 @@
-# GameJam
-Jam
+# FrogFarts
+Fart into the skies
 
 # Developing
 
