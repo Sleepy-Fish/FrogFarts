@@ -61,16 +61,22 @@ export default class GameState extends State {
 
     // Loop all entities to handle collisions, gravity, and percolating run functions
     for (const entity of entities) {
-      if (entity.interactive) { // Only interactive entities can collide with things
-        for (const other of entities.filter(e => e.solid && e !== entity)) { // Only solid entities can be collided with
-          const edge = window.bump.hit(entity.collider, other.collider, true); // If entities are in contact returns string 'top', 'bottom' 'left' or 'right'
+      // Only interactive entities can collide with things
+      if (entity.interactive) {
+        // Only solid entities can be collided with
+        for (const other of entities.filter(e => e.solid && e !== entity)) {
+          // If entities are in contact returns string 'top', 'bottom' 'left' or 'right'
+          const edge = window.bump.hit(entity.collider, other.collider, true);
           if (edge) {
-            if (!entity.cLocks[other.NAME]) entity.collide(other, edge); // Perform stored collisions logic
-            entity.cLock(other.NAME); // Lock the collision with this type of collidee for a short time so we dont get stuck in a loop
+            // Perform stored collisions logic
+            if (!entity.cLocks[other.NAME]) entity.collide(other, edge);
+            // Lock the collision with this type of collidee for a short time so we dont get stuck in a loop
+            entity.cLock(other.NAME);
           }
         }
       }
-      if (entity.physical && !entity.static) { // only physical entities are effected by global physics
+      // only physical entities are effected by global physics
+      if (entity.physical && !entity.static) {
         entity.velocity.y += C.GRAVITY;
         entity.velocity.y = Math.max(entity.velocity.y, C.TERMINAL_VELOCITY);
       }
